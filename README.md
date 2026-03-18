@@ -9,16 +9,16 @@ Context window usage analyzer for [OpenCode](https://opencode.ai). Shows how muc
 Quick pre-session check. Fits in a glance.
 
 ```
-  ▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░  Context Usage
-                                  62.2k/200.0k tokens (31.1%)
+  ▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░  Context Usage
+                                  78.4k/200.0k tokens (39.2%)
 
   ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  System prompt       8.5k (4.3%)
   ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Built-in tools     15.2k (7.6%)
-  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  MCP tools           9.1k (4.5%)
-  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Custom agents      14.6k (7.3%)
-  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Instructions       10.7k (5.4%)
-  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Config overhead     4.0k (2.0%)
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░  Free space        137.8k (68.9%)
+  ▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░░░  MCP tools          32.1k (16.1%)
+  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Custom agents       8.2k (4.1%)
+  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Instructions       11.6k (5.8%)
+  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Config overhead     2.8k (1.4%)
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░  Free space        121.6k (60.8%)
 ```
 
 ### `/context standard` — top items per category
@@ -26,40 +26,38 @@ Quick pre-session check. Fits in a glance.
 See what's eating the most tokens without the full firehose.
 
 ```
-  ▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░  Context Usage
-                                  62.2k/200.0k tokens (31.1%)
+  ▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░  Context Usage
+                                  78.4k/200.0k tokens (39.2%)
 
   ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  System prompt       8.5k (4.3%)
   ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Built-in tools     15.2k (7.6%)
-  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  MCP tools           9.1k (4.5%)
-  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Custom agents      14.6k (7.3%)
-  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Instructions       10.7k (5.4%)
-  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Config overhead     4.0k (2.0%)
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░  Free space        137.8k (68.9%)
+  ▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░░░  MCP tools          32.1k (16.1%)
+  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Custom agents       8.2k (4.1%)
+  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Instructions       11.6k (5.8%)
+  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Config overhead     2.8k (1.4%)
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░  Free space        121.6k (60.8%)
 
-  MCP tools (11)
-    └ pokeedge-data-ops: 828 tokens
-    └ pokeedge-sync-ops: 828 tokens
-    └ svelte-mcp: 827 tokens
+  MCP tools (8)
     └ context7: 825 tokens
-    └ kagi: 825 tokens
-    ... and 6 more
+    └ firecrawl: 825 tokens
+    └ grep-app: 825 tokens
+    └ lgrep: 825 tokens
+    └ sentry: 825 tokens
+    ... and 3 more
 
-  Custom agents (32)
-    └ orca (global): 2.5k tokens
-    └ scout (global): 1.6k tokens
-    └ prioritizer (global): 1.5k tokens
-    └ refine (global): 1.4k tokens
-    └ mechanic (global): 1.3k tokens
-    ... and 27 more
+  Custom agents (6)
+    └ build (global): 2.4k tokens
+    └ plan (global): 1.8k tokens
+    └ general (global): 1.5k tokens
+    └ explore (global): 1.2k tokens
+    └ code-reviewer (project): 820 tokens
+    ... and 1 more
 
-  Instructions (11)
-    └ ~/dev/oc-plugins/advance/ADV_INSTRUCTIONS.md: 3.6k tokens
-    └ ~/.config/opencode/instructions/rules.yaml: 1.6k tokens
-    └ ~/.config/opencode/instructions/mcp-tools.md: 1.3k tokens
-    └ ~/.config/opencode/instructions/shell_strategy.md: 888 tokens
-    └ ~/.config/opencode/instructions/worktree-guide.md: 809 tokens
-    ... and 6 more
+  Instructions (4)
+    └ ~/.config/opencode/instructions/coding-standards.md: 4.2k tokens
+    └ ~/my-project/AGENTS.md: 3.8k tokens
+    └ ~/.config/opencode/instructions/git-conventions.md: 2.1k tokens
+    └ ~/.config/opencode/instructions/testing-policy.md: 1.5k tokens
 ```
 
 ### `/context detailed` — full breakdown
@@ -67,75 +65,56 @@ See what's eating the most tokens without the full firehose.
 Every item, disabled servers, optimization recommendations, config sources.
 
 ```
-  ▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░  Context Usage
-                                  62.2k/200.0k tokens (31.1%)
+  ▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░░░░░░░  Context Usage
+                                  78.4k/200.0k tokens (39.2%)
 
   ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  System prompt       8.5k (4.3%)
   ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Built-in tools     15.2k (7.6%)
-  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  MCP tools           9.1k (4.5%)
-  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Custom agents      14.6k (7.3%)
-  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Instructions       10.7k (5.4%)
-  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Config overhead     4.0k (2.0%)
-  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░  Free space        137.8k (68.9%)
+  ▓▓▓▓▓░░░░░░░░░░░░░░░░░░░░░░░░░  MCP tools          32.1k (16.1%)
+  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Custom agents       8.2k (4.1%)
+  ▓▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Instructions       11.6k (5.8%)
+  ▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  Config overhead     2.8k (1.4%)
+  ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░░░░░░░░░░░░  Free space        121.6k (60.8%)
 
-  MCP tools (11)
-    └ pokeedge-data-ops: 828 tokens
-    └ pokeedge-sync-ops: 828 tokens
-    └ svelte-mcp: 827 tokens
+  MCP tools (8)
     └ context7: 825 tokens
-    └ kagi: 825 tokens
     └ firecrawl: 825 tokens
     └ grep-app: 825 tokens
-    └ sentry: 825 tokens
     └ lgrep: 825 tokens
-    └ playwright: 825 tokens
-    └ vision: 824 tokens
+    └ sentry: 825 tokens
+    └ github: 824 tokens
+    └ fetch: 823 tokens
+    └ filesystem: 822 tokens
 
-  Custom agents (32)
-    └ orca (global): 2.5k tokens
-    └ scout (global): 1.6k tokens
-    └ prioritizer (global): 1.5k tokens
-    └ refine (global): 1.4k tokens
-    └ mechanic (global): 1.3k tokens
-    └ tron (global): 1.2k tokens
-    └ adv-researcher (global): 1.1k tokens
-    └ build (global): 957 tokens
-    └ librarian (global): 688 tokens
-    └ general (global): 589 tokens
-    └ plan (global): 580 tokens
-    └ explore (global): 508 tokens
-    ...
+  Custom agents (6)
+    └ build (global): 2.4k tokens
+    └ plan (global): 1.8k tokens
+    └ general (global): 1.5k tokens
+    └ explore (global): 1.2k tokens
+    └ code-reviewer (project): 820 tokens
+    └ docs-writer (project): 480 tokens
 
-  Instructions (11)
-    └ ~/dev/oc-plugins/advance/ADV_INSTRUCTIONS.md: 3.6k tokens
-    └ ~/.config/opencode/instructions/rules.yaml: 1.6k tokens
-    └ ~/.config/opencode/instructions/mcp-tools.md: 1.3k tokens
-    └ ~/.config/opencode/instructions/shell_strategy.md: 888 tokens
-    └ ~/.config/opencode/instructions/worktree-guide.md: 809 tokens
-    └ ~/.config/opencode/instructions/temp_directory.md: 602 tokens
-    └ ~/.config/opencode/instructions/morph-tools.md: 537 tokens
-    └ ~/.config/opencode/instructions/lgrep-tools.md: 479 tokens
-    └ ~/.config/opencode/instructions/lbp.md: 411 tokens
-    └ ~/.config/opencode/instructions/test_resource_guardrails.md: 306 tokens
-    └ ~/.config/opencode/instructions/identity.md: 262 tokens
+  Instructions (4)
+    └ ~/.config/opencode/instructions/coding-standards.md: 4.2k tokens
+    └ ~/my-project/AGENTS.md: 3.8k tokens
+    └ ~/.config/opencode/instructions/git-conventions.md: 2.1k tokens
+    └ ~/.config/opencode/instructions/testing-policy.md: 1.5k tokens
 
-  Disabled MCP servers (6)
-    └ arxiv-mcp (disabled)
-    └ time (disabled)
-    └ basic-memory (disabled)
-    └ figma-mcp (disabled)
-    └ sonarqube (disabled)
+  Disabled MCP servers (3)
+    └ playwright (disabled)
     └ brave-web-search (disabled)
+    └ arxiv-mcp (disabled)
 
   Config sources:
     Global: ~/.config/opencode/opencode.json
+    Project: ~/my-project/opencode.json
 ```
 
 ---
 
 ## Why?
 
-OpenCode doesn't expose token accounting. You might have 11 MCP servers, 32 agents, and 11 instruction files loaded — but no way to know how much of your 200k context window they're eating before you even say hello.
+OpenCode doesn't expose token accounting. You might have 8 MCP servers, 6 agents, and 4 instruction files loaded — but no way to know how much of your 200k context window they're eating before you even say hello.
 
 This tool fills that gap.
 

@@ -1,0 +1,32 @@
+{
+  "name": "open-context-check",
+  "version": "0.1.0",
+  "description": "Context window usage analyzer for OpenCode — shows token overhead from MCP tools, agents, instructions, and config before you start working",
+  "type": "module",
+  "main": "dist/context-check.js",
+  "bin": {
+    "open-context-check": "dist/context-check.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "check": "tsc --noEmit",
+    "lint": "biome check src/",
+    "start": "node dist/context-check.js"
+  },
+  "keywords": [
+    "opencode",
+    "context-window",
+    "token-usage",
+    "mcp",
+    "ai-coding"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "tiktoken": "^1.0.22"
+  }
+}

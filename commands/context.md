@@ -1,6 +1,5 @@
 ---
 description: Analyze context window token usage and overhead
-agent: plan
 ---
 
 Analyze the current OpenCode session's context window overhead by running:

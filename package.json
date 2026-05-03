@@ -1,7 +1,7 @@
 {
   "name": "open-context-check",
   "version": "0.1.0",
-  "description": "Context window usage analyzer for OpenCode — shows token overhead from MCP tools, agents, instructions, and config before you start working",
+  "description": "Live context window usage analyzer for OpenCode token telemetry",
   "type": "module",
   "main": "dist/context-check.js",
   "bin": {

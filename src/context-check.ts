@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { loadOpenCodeConfig } from "./config.js";
-import { generateLiveReport, generateReport } from "./report.js";
+import { generateLiveReport } from "./report.js";
 import { loadLiveContextTelemetry } from "./session.js";
 import { freeEncoder } from "./tokens.js";
 
@@ -74,16 +74,18 @@ async function main() {
   let mode: "compact" | "standard" | "detailed" = "compact";
   let contextLimit: number | null = null;
   let sessionID: string | undefined;
-  let live = true;
-  let includeStaticEstimate = false;
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === "standard" || arg === "s") mode = "standard";
     else if (arg === "detailed" || arg === "d") mode = "detailed";
     else if (arg === "compact" || arg === "c") mode = "compact";
-    else if (arg === "--static") live = false;
-    else if (arg === "--with-static") includeStaticEstimate = true;
+    else if (arg === "--static" || arg === "--with-static") {
+      console.error(
+        `Unsupported option ${arg}: static estimates were removed; use live /context output instead.`,
+      );
+      process.exit(1);
+    }
     else if (arg === "--session") {
       sessionID = args[i + 1];
       i++;
@@ -98,13 +100,11 @@ Usage:
 Modes:
   compact   (default) Live context overview
   standard  Live overview with session details
-  detailed  Live overview plus static config estimate
+  detailed  Live overview with session details
 
 Options:
   --session ID     Analyze a specific OpenCode session
   --limit N        Override context window size (default: auto-detect from model)
-  --static         Show static config overhead estimate only
-  --with-static    Include static config estimate after live usage
   --help           Show this help
 `);
       process.exit(0);
@@ -127,30 +127,16 @@ Options:
     const config = await loadOpenCodeConfig(process.cwd());
     const configText = config.rawGlobalConfig + config.rawProjectConfig;
 
-    if (mode === "detailed") includeStaticEstimate = true;
-
-    if (live) {
-      const telemetry = await loadLiveContextTelemetry(sessionID);
-      if (telemetry) {
-        const limit = contextLimit ?? guessContextLimit(configText, telemetry.modelID);
-        console.log(generateLiveReport(telemetry, limit, mode));
-        if (includeStaticEstimate) {
-          console.log(generateReport(config, limit, mode));
-        }
-        return;
-      }
-
+    const telemetry = await loadLiveContextTelemetry(sessionID);
+    if (!telemetry) {
       console.error(
-        "No live session telemetry found; falling back to static config estimate.",
+        "No live session telemetry found. OpenCode export has no completed assistant API call for this session.",
       );
+      process.exit(1);
     }
 
-    if (contextLimit === null) {
-      contextLimit = guessContextLimit(configText);
-    }
-
-    const report = generateReport(config, contextLimit, mode);
-    console.log(report);
+    const limit = contextLimit ?? guessContextLimit(configText, telemetry.modelID);
+    console.log(generateLiveReport(telemetry, limit, mode));
   } catch (err) {
     console.error("Error analyzing context:", err);
     process.exit(1);
